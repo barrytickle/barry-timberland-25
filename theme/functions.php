@@ -6,6 +6,7 @@
  */
 
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
+require_once dirname( __DIR__ ) . '/theme/src/custom-functions.php';
 
 Timber\Timber::init();
 Timber::$dirname    = array( 'views', 'blocks' );
@@ -26,7 +27,21 @@ class Timberland extends Timber\Site {
 
 	public function add_to_context( $context ) {
 		$context['site'] = $this;
-		$context['menu'] = Timber::get_menu();
+		$menus = wp_get_nav_menus();
+		$context['menus'] = [];
+
+		foreach ($menus as $menu) {
+			$context['menus'][$menu->slug] = Timber::get_menu($menu->term_id);
+		}
+
+		$context['header_cta'] = [];
+		if(isset(Timber::get_menu('header')->items)){
+			foreach(Timber::get_menu('header')->items as $item){
+				if(has_class_name($item->classes, 'cta_label')){
+					$context['header_cta'] = $item;
+				}
+			}
+		}
 
 		// Require block functions files
 		foreach ( glob( __DIR__ . '/blocks/*/functions.php' ) as $file ) {
@@ -63,6 +78,8 @@ class Timberland extends Timber\Site {
 		wp_dequeue_style( 'wc-block-style' );
 		wp_dequeue_script( 'jquery' );
 		wp_dequeue_style( 'global-styles' );
+
+		
 
 		$vite_env = 'production';
 
@@ -146,11 +163,14 @@ class Timberland extends Timber\Site {
 
 new Timberland();
 
+/**
+ * Don't edit this one
+ */
 function acf_block_render_callback( $block, $content ) {
 	$context           = Timber::context();
 	$context['post']   = Timber::get_post();
 	$context['block']  = $block;
-	$context['fields'] = get_fields();
+	$context['fields']  = get_fields();
     $block_name        = explode( '/', $block['name'] )[1];
     $template          = 'blocks/'. $block_name . '/index.twig';
 
@@ -163,3 +183,10 @@ function acf_should_wrap_innerblocks( $wrap, $name ) {
 }
 
 add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'acf_should_wrap_innerblocks', 10, 2 );
+
+
+// Add functions to Timber so it can be used in Twig
+add_filter('timber/twig', function($twig) {
+    $twig->addFunction(new Twig\TwigFunction('has_class_name', 'has_class_name'));
+    return $twig;
+});
