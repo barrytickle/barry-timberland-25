@@ -1,12 +1,12 @@
 {% set buttonType = type|default('solid') %}
 
 {% if buttonType == 'animated' %}
-	<a class="relative flex items-center justify-center w-auto px-8 ml-0 text-base font-medium leading-snug text-white h-14 sm:mt-0 group mt-2 md:mt-0" href="{{button.url}}">
+	<a class="relative flex items-center justify-center w-auto px-8 ml-0 text-base font-medium leading-snug text-white h-14 sm:mt-0 group mt-2 md:mt-0 {{classes}}" href="{{button.url}}">
 		<span class="absolute top-0 left-0 z-10 block w-full h-full transition-all ease-in-out rounded-full bg-gradient-to-r duration-250 from-dark-800 to-dark-900 md:w-14 md:group-hover:w-full"></span>
 		<span class="relative z-20">{{button.title}}</span>
 	</a>
 {% elseif buttonType == 'solid' %}
-	<a class="{{classes}} w-auto flex items-center justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900 mt-2 md:mt-0 md:mr-2" href="{{button.url}}">{{button.title}}</a>
+	<a class=" flex items-center justify-center px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900 {{classes}}" href="{{button.url}}">{{button.title}}</a>
 {% else %}
 	<button class="btn btn-default">{{ button.title }}</button>
 {% endif %}

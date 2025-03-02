@@ -52,9 +52,9 @@
     "location": [
         [
             {
-                "param": "post_type",
+                "param": "taxonomy",
                 "operator": "==",
-                "value": "post"
+                "value": "post_tag"
             }
         ]
     ],
@@ -74,5 +74,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1740164460
+    "modified": 1740174540
 }

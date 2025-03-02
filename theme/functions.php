@@ -5,6 +5,8 @@
  * @since Timberland 2.1.0
  */
 
+use Twig\TwigFunction;
+
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
 require_once dirname( __DIR__ ) . '/theme/src/custom-functions.php';
 
@@ -187,6 +189,10 @@ add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'acf_should_wrap_innerblocks
 
 // Add functions to Timber so it can be used in Twig
 add_filter('timber/twig', function($twig) {
-    $twig->addFunction(new Twig\TwigFunction('has_class_name', 'has_class_name'));
+	$twig->addFunction(new TwigFunction('has_class_name', 'has_class_name'));
+	$twig->addFunction(new TwigFunction('is_svg', 'is_svg'));
+	$twig->addFunction(new TwigFunction('add_class_to_svg', 'add_class_to_svg'));
+	$twig->addFunction(new TwigFunction('post_meta', 'post_meta'));
+	$twig->addFunction(new TwigFunction('list_acf_fields_by_post_id', 'list_acf_fields_by_post_id'));
     return $twig;
 });

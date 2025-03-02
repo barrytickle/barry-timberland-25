@@ -1,5 +1,21 @@
+import typography from "@tailwindcss/typography";
+
+// Define your safelisted class names here
+const safelist = [
+  "bg-red-500",
+  "text-xl",
+  "p-4",
+  "w-[fit-content]",
+  // Add more class names as needed
+];
+
 export default {
-  content: ["./theme/views/**/*.twig", "./theme/blocks/**/*.twig"],
+  content: [
+    "./theme/views/**/*.twig",
+    "./theme/blocks/**/*.twig",
+    "./theme/components/**/*.twig",
+    ...safelist.map((cls) => `dummy/${cls}.html`), // Trick Tailwind into including them
+  ],
   theme: {
     extend: {
       colors: {
@@ -40,5 +56,5 @@ export default {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [typography],
 };
