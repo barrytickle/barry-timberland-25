@@ -6,13 +6,20 @@
  */
 
 use Twig\TwigFunction;
+// use BarryTimberHelpers; // Commented out as it is not defined
 
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
-require_once dirname( __DIR__ ) . '/theme/src/custom-functions.php';
+use BarryTimberHelpers\BarryTimberHelpers;
+
+BarryTimberHelpers::init();
+
+// use function BarryTimberHelpers\has_class_name;
 
 Timber\Timber::init();
 Timber::$dirname    = array( 'views', 'blocks' );
 Timber::$autoescape = false;
+
+
 
 class Timberland extends Timber\Site {
 	public function __construct() {
@@ -185,17 +192,3 @@ function acf_should_wrap_innerblocks( $wrap, $name ) {
 }
 
 add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'acf_should_wrap_innerblocks', 10, 2 );
-
-
-// Add functions to Timber so it can be used in Twig
-add_filter('timber/twig', function($twig) {
-	$twig->addFunction(new TwigFunction('has_class_name', 'has_class_name'));
-	$twig->addFunction(new TwigFunction('is_svg', 'is_svg'));
-	$twig->addFunction(new TwigFunction('add_class_to_svg', 'add_class_to_svg'));
-	$twig->addFunction(new TwigFunction('post_meta', 'post_meta'));
-	$twig->addFunction(new TwigFunction('list_acf_fields_by_post_id', 'list_acf_fields_by_post_id'));
-	$twig->addFunction(new TwigFunction('get_acf_block_by_post_id', 'get_acf_block_by_post_id'));
-	$twig->addFunction(new TwigFunction('get_featured_image_by_post_id', 'get_featured_image_by_post_id'));
-	$twig->addFunction(new TwigFunction('get_url_by_post_id', 'get_url_by_post_id'));
-    return $twig;
-});
