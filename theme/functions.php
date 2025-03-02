@@ -194,5 +194,8 @@ add_filter('timber/twig', function($twig) {
 	$twig->addFunction(new TwigFunction('add_class_to_svg', 'add_class_to_svg'));
 	$twig->addFunction(new TwigFunction('post_meta', 'post_meta'));
 	$twig->addFunction(new TwigFunction('list_acf_fields_by_post_id', 'list_acf_fields_by_post_id'));
+	$twig->addFunction(new TwigFunction('get_acf_block_by_post_id', 'get_acf_block_by_post_id'));
+	$twig->addFunction(new TwigFunction('get_featured_image_by_post_id', 'get_featured_image_by_post_id'));
+	$twig->addFunction(new TwigFunction('get_url_by_post_id', 'get_url_by_post_id'));
     return $twig;
 });

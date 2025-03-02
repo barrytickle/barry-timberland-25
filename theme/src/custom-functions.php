@@ -1,5 +1,6 @@
 <?php
 
+
 function register_my_menu() {
     register_nav_menu('header-menu', __('Header Menu'));
 }
@@ -14,19 +15,69 @@ function post_meta($post_id, $meta_key){
 }
 
 function list_acf_fields_by_post_id($post_id) {
-    if (function_exists('get_fields')) {
-        $fields = get_fields($post_id);
-        if ($fields) {
-            foreach ($fields as $key => $value) {
-                echo $key . ': ' . $value . '<br>';
-            }
-        } else {
-            echo 'No ACF fields found for this post: ' . $post_id;
-        }
-    } else {
-        echo 'ACF plugin is not active.';
+    $post = get_post($post_id);
+    if (!$post) {
+        return false; // Post doesn't exist
     }
+
+    $blocks = parse_blocks($post->post_content);
+    $acf_fields = [];
+
+    foreach ($blocks as $block) {
+        if (isset($block['blockName']) && strpos($block['blockName'], 'acf/') === 0) {
+            // Extract ACF block fields
+            $acf_fields[$block['blockName']] = $block['attrs']['data'] ?? [];
+        }
+    }
+
+    return $acf_fields;
 }
+
+function get_url_by_post_id($post_id) {
+    $post = get_post($post_id);
+    if (!$post) {
+        return false; // Post doesn't exist
+    }
+    return get_permalink($post_id);
+}
+
+function get_acf_block_by_post_id($post_id, $block_name) {
+    $post = get_post($post_id);
+    if (!$post) {
+        return false; // Post doesn't exist
+    }
+
+    $blocks = parse_blocks($post->post_content);
+
+    foreach ($blocks as $block) {
+        if (isset($block['blockName']) && $block['blockName'] === 'acf/' . $block_name) {
+            // Retrieve stored ACF fields
+            $acf_fields = $block['attrs']['data'] ?? [];
+
+            // Manually resolve dynamic fields by rendering the block
+            if (function_exists('render_block')) {
+                $rendered_block = render_block($block); // Fully renders the block
+                $acf_fields['rendered_content'] = $rendered_block;
+            }
+
+            return $acf_fields;
+        }
+    }
+
+    return false; // Block not found
+}
+
+function get_featured_image_by_post_id($post_id) {
+    $thumbnail_id = get_post_thumbnail_id($post_id);
+    if (!$thumbnail_id) {
+        return false; // No featured image
+    }
+
+    $thumbnail_url = wp_get_attachment_image_src($thumbnail_id, 'full');
+    return $thumbnail_url ? $thumbnail_url[0] : false;
+}
+
+
 
 function cc_mime_types($mimes) {
     $mimes['svg'] = 'image/svg+xml';

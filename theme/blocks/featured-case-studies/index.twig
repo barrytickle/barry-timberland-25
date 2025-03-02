@@ -3,9 +3,9 @@
 {% set cta = fields.cta %}
 {% set featured_case_studies = fields.featured_case_studies %}
 
-<section class="px-4 pt-12 pb-10 md:pb-12 md:pt-16  sm:px-6 lg:px-8" data-name="featured-case-studies">
-	<div class="w-full max-w-screen-xl mx-auto">
-		<div class="w-full max-w-xl mx-auto text-center lg:max-w-3xl md:max-w-2xl">
+<section class="px-4 pt-12 pb-10 md:pb-12 md:pt-10  sm:px-6 lg:px-8" data-name="featured-case-studies">
+	<div class="w-full max-w-screen-xl mx-auto ">
+		<div class="w-full max-w-xl mx-auto text-center lg:max-w-3xl md:max-w-2xl mb-9">
 			<p class="inline-flex items-center justify-center px-6 py-2 text-sm font-medium tracking-wide text-white rounded-r-full rounded-tl-full bg-gradient-to-r from-dark-600 to-dark-700">{{tag}}</p>
 			<h2 class="mt-6 text-3xl font-extrabold text-white sm:text-4xl md:text-5xl">{{title}}</h2>
 			{% include 'components/button.twig' with {
@@ -14,8 +14,8 @@
                 classes:"w-[fit-content] mx-auto mt-8",
             } %}
 		</div>
+		{% for case_study in featured_case_studies %}
+			{% include 'components/case-study-block.twig' with {case_study:case_study, even: loop.index is even} %}
+		{% endfor %}
 	</div>
-	{% for case_study in featured_case_studies %}
-		{% include 'components/case-study-block.twig' with {case_study:case_study, even: loop.index is even} %}
-	{% endfor %}
 </section>
