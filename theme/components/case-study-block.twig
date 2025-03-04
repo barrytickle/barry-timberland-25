@@ -1,4 +1,5 @@
-{% set case_study = case_study.case_study ?? case_study %}
+{% set case_study = case_study.case_study ? case_study.case_study :  case_study %}
+
 {% set hero = get_acf_block_by_post_id(case_study.ID, 'case-study-hero') %}
 {% set even = even|default(false) %}
 

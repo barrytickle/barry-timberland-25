@@ -13,3 +13,25 @@ body.admin-bar {
 .no-move {
   @apply h-full w-full overflow-hidden;
 }
+
+.content-page {
+  * {
+    @apply mb-4;
+  }
+
+  h2 {
+    @apply text-3xl font-bold;
+  }
+
+  h3 {
+    @apply text-2xl font-bold;
+  }
+
+  h4 {
+    @apply text-xl font-bold;
+  }
+
+  h5 {
+    @apply text-lg font-bold;
+  }
+}

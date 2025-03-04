@@ -1,7 +1,7 @@
 {
   "apiVersion": 2,
-  "name": "acf/timeline",
-  "title": "Timeline",
+  "name": "acf/all-case-studies",
+  "title": "All Case Studies",
   "description": "",
   "category": "custom",
   "acf": {

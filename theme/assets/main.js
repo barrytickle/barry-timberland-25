@@ -1,5 +1,6 @@
-import "./styles/main.css";
+import "./styles/main.scss";
 import.meta.glob("../blocks/**/*.css", { eager: true });
+
 import Alpine from "alpinejs";
 
 window.Alpine = Alpine;

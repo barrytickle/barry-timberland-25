@@ -1,13 +1,12 @@
 @import "tailwindcss/base";
 @import "tailwindcss/components";
-@import "theme";
 @import "tailwindcss/utilities";
 
 body {
-  @apply font-sans;
+  @apply font-sans bg-red-50;
 }
 
-.wp-block{
+.wp-block {
   @apply max-w-screen-xl;
 }
 
@@ -15,7 +14,9 @@ body {
   @apply max-w-screen-xl mx-auto my-6;
 }
 
-.mce-content-body, .acf_content, .mceContentBody {
+.mce-content-body,
+.acf_content,
+.mceContentBody {
   @apply prose prose-lg max-w-none;
 }
 

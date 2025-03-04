@@ -1,7 +1,7 @@
 {
   "apiVersion": 2,
-  "name": "acf/timeline",
-  "title": "Timeline",
+  "name": "acf/title-with-text",
+  "title": "Title with Text",
   "description": "",
   "category": "custom",
   "acf": {

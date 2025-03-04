@@ -1,0 +1,7 @@
+<section class="mt-6" data-name="all-case-studies">
+	<div class="w-full max-w-screen-xl mx-auto ">
+		{% for case_study in case_studies %}
+			{% include 'components/case-study-block.twig' with {case_study:case_study, even: loop.index is even} %}
+		{% endfor %}
+	</div>
+</section>

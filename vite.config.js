@@ -1,18 +1,18 @@
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv } from "vite";
 
-const dest = './theme/assets/dist'
+const dest = "./theme/assets/dist";
 const entries = [
-  './theme/assets/main.js',
-  './theme/assets/styles/editor-style.css',
-]
+  "./theme/assets/main.js",
+  "./theme/assets/styles/editor-style.css",
+];
 
 export default defineConfig(({ mode }) => {
   return {
-    base: './',
+    base: "./",
     resolve: {
       alias: {
-        '@': __dirname
-      }
+        "@": __dirname,
+      },
     },
     server: {
       cors: true,
@@ -20,19 +20,19 @@ export default defineConfig(({ mode }) => {
       port: 3000,
       https: false,
       hmr: {
-        host: 'localhost',
-      }
+        host: "localhost",
+      },
     },
     build: {
       outDir: dest,
       emptyOutDir: true,
       manifest: true,
-      target: 'es2018',
+      target: "es2018",
       rollupOptions: {
         input: entries,
       },
       minify: true,
-      write: true
-    }
-  }
-})
+      write: true,
+    },
+  };
+});
