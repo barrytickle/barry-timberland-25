@@ -1,3 +1,5 @@
+{% set logo = logo_split(options.logo) %}
+
 <header class="sticky w-full top-0 mb-3 z-50 js-header bg-dark-900">
 	<nav class="flex items-center justify-between w-full container mx-auto md:px-4 md:py-6 max-w-7xl sm:px-6 lg:px-8">
 		<div class="flex items-center justify-between w-full">
@@ -5,13 +7,13 @@
 				class="flex items-center justify-between w-full px-4 py-6 md:w-[fit-content] md:px-0 md:py-0 bg-dark-900 relative z-50">
 				{# Main Logo #}
 				<a href="/" class="block text-2xl font-black md:hidden lg:block group">
-					<span class="text-white transition duration-200 ease-in-out group-hover:text-dark-300">Barry</span>
-					<span class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white">Tickle</span>
+					<span class="text-white transition duration-200 ease-in-out group-hover:text-dark-300">{{logo.full[0]}}</span>
+					<span class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white">{{logo.full[1]}}</span>
 				</a>
 				{# Condensed logo for smaller screens  #}
 				<a href="/" class="hidden text-3xl font-black md:block lg:hidden group">
-					<span class="text-white transition duration-200 ease-in-out group-hover:text-dark-300">B</span>
-					<span class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white">T</span>
+					<span class="text-white transition duration-200 ease-in-out group-hover:text-dark-300">{{logo.initials[0]}}</span>
+					<span class="transition duration-200 ease-in-out text-dark-300 group-hover:text-white">{{logo.initials[1]}}</span>
 				</a>
 
 				{% include 'components/button.twig' with {type: 'solid', classes:"md:hidden", button: {link: header_cta.url, title:header_cta.title}} %}

@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barrytickle/barry-tailwind-lib.git",
-                "reference": "3361df11eb24fed9c7e4cf6f4e973ad8d025254f"
+                "reference": "62ae24c07deab3e47b1ae861b903e3b27e75a5a0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barrytickle/barry-tailwind-lib/zipball/3361df11eb24fed9c7e4cf6f4e973ad8d025254f",
-                "reference": "3361df11eb24fed9c7e4cf6f4e973ad8d025254f",
+                "url": "https://api.github.com/repos/barrytickle/barry-tailwind-lib/zipball/62ae24c07deab3e47b1ae861b903e3b27e75a5a0",
+                "reference": "62ae24c07deab3e47b1ae861b903e3b27e75a5a0",
                 "shasum": ""
             },
             "require": {
@@ -35,7 +35,7 @@
                 "source": "https://github.com/barrytickle/barry-tailwind-lib/tree/main",
                 "issues": "https://github.com/barrytickle/barry-tailwind-lib/issues"
             },
-            "time": "2025-03-02T01:59:46+00:00"
+            "time": "2025-03-02T13:34:23+00:00"
         },
         {
             "name": "symfony/deprecation-contracts",

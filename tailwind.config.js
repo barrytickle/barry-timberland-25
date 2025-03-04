@@ -14,7 +14,7 @@ export default {
     "./theme/views/**/*.twig",
     "./theme/blocks/**/*.twig",
     "./theme/components/**/*.twig",
-    ...safelist.map((cls) => `dummy/${cls}.html`), // Trick Tailwind into including them
+    ...safelist.map((cls) => `dummy/${cls}.html`),
   ],
   theme: {
     extend: {

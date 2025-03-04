@@ -9,6 +9,7 @@ use Twig\TwigFunction;
 // use BarryTimberHelpers; // Commented out as it is not defined
 
 require_once dirname( __DIR__ ) . '/vendor/autoload.php';
+require_once dirname( __DIR__ ) . '/theme/src/custom-functions.php';
 use BarryTimberHelpers\BarryTimberHelpers;
 
 BarryTimberHelpers::init();
@@ -39,6 +40,7 @@ class Timberland extends Timber\Site {
 		$menus = wp_get_nav_menus();
 		$context['menus'] = [];
 
+		$context['options'] = get_fields('options');
 		foreach ($menus as $menu) {
 			$context['menus'][$menu->slug] = Timber::get_menu($menu->term_id);
 		}
@@ -192,3 +194,9 @@ function acf_should_wrap_innerblocks( $wrap, $name ) {
 }
 
 add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'acf_should_wrap_innerblocks', 10, 2 );
+
+add_filter('timber/twig', function ($twig) {
+	$twig->addFunction(new TwigFunction('logo_split', 'logo_split'));
+
+	return $twig;
+});
