@@ -36,6 +36,8 @@ class Timberland extends Timber\Site {
 	}
 
 	public function add_to_context( $context ) {
+		global $post;
+		$context['processed_content'] = wrap_non_acf_blocks($post->post_content);
 		$context['site'] = $this;
 		$menus = wp_get_nav_menus();
 		$context['menus'] = [];
@@ -196,7 +198,8 @@ function acf_should_wrap_innerblocks( $wrap, $name ) {
 add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'acf_should_wrap_innerblocks', 10, 2 );
 
 add_filter('timber/twig', function ($twig) {
-	$twig->addFunction(new TwigFunction('logo_split', 'logo_split'));
 
+
+	$twig->addFunction(new TwigFunction('logo_split', 'logo_split'));
 	return $twig;
 });

@@ -35,3 +35,7 @@ body.admin-bar {
     @apply text-lg font-bold;
   }
 }
+
+.wrapped-content {
+  @apply max-w-2xl mx-auto;
+}
