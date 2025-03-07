@@ -23,15 +23,17 @@
 						{% for field in form_fields %}
 							<div class="mt-3">
 								{% if field.type is not same as("submit") and field.type is not same as("textarea") %}
-									<label for="{{ field.name }}" required="" class="ml-0.5 text-dark-300 font-medium text-sm">
+									{% set field_name = field.name|replace({' ': ''})|lower %}
+
+									<label for="{{ field_name }}" required="" class="ml-0.5 text-dark-300 font-medium text-sm">
 										{{ field.label }}:
 									</label>
-									<input type="{{ field.type }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" class="w-full p-4 mt-2 text-sm font-medium text-white transition duration-200 ease-in-out border-2 border-solid outline-none h-14 rounded-2xl bg-dark-800 border-dark-800 focus:border-dark-600 focus:outline-none">
+									<input type="{{ field.type }}" name="{{ field_name }}" placeholder="{{ field.placeholder }}" class="w-full p-4 mt-2 text-sm font-medium text-white transition duration-200 ease-in-out border-2 border-solid outline-none h-14 rounded-2xl bg-dark-800 border-dark-800 focus:border-dark-600 focus:outline-none">
 								{% elseif field.type is same as("textarea") %}
-									<label for="{{ field.name }}" required="" class="ml-0.5 text-dark-300 font-medium text-sm">
+									<label for="{{ field_name }}" required="" class="ml-0.5 text-dark-300 font-medium text-sm">
 										{{ field.label }}:
 									</label>
-									<textarea name="{{ field.name }}" placeholder="{{ field.placeholder }}" class="w-full p-4 mt-2 text-sm font-medium text-white transition duration-200 ease-in-out border-2 border-solid outline-none h-14 rounded-2xl bg-dark-800 border-dark-800 focus:border-dark-600 focus:outline-none"></textarea>
+									<textarea name="{{ field_name}}" placeholder="{{ field.placeholder }}" class="w-full p-4 mt-2 text-sm font-medium text-white transition duration-200 ease-in-out border-2 border-solid outline-none h-14 rounded-2xl bg-dark-800 border-dark-800 focus:border-dark-600 focus:outline-none"></textarea>
 								{% elseif field.type is same as("submit") %}
 									<div class="flex justify-start mt-3">
 										<button type="submit" class="flex items-center justify-center w-auto px-8 py-4 text-base font-semibold leading-snug transition ease-in-out bg-white rounded-full h-14 duration-250 text-dark-900 hover:text-white focus:outline-none hover:bg-dark-900">
