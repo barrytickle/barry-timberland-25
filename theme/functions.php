@@ -48,12 +48,9 @@ class Timberland extends Timber\Site {
 		}
 
 		$context['header_cta'] = [];
-		if(isset(Timber::get_menu('header')->items)){
-			foreach(Timber::get_menu('header')->items as $item){
-				if(has_class_name($item->classes, 'cta_label')){
-					$context['header_cta'] = $item;
-				}
-			}
+		$header_menu = Timber::get_menu('header');
+		if ($header_menu && !empty($header_menu->items)) {
+			$context['header_cta'] = end($header_menu->items);
 		}
 
 		// Require block functions files
