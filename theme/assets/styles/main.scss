@@ -14,7 +14,8 @@ body.admin-bar {
   @apply h-full w-full overflow-hidden;
 }
 
-.content-page {
+.content-page,
+.wp-block-post-content {
   * {
     @apply mb-4;
   }
