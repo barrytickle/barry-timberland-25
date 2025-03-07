@@ -30,7 +30,7 @@
 			<input type="checkbox" id="navigation-toggle" class="peer hidden"/>
 			<div class=" z-40 peer-checked:flex flex-col justify-center peer-checked:top-[80px] duration-500 fixed top-[-100vh] left-0 h-[calc(100vh-80px)] bg-dark-900 w-full md:flex md:justify-between items-center md:space-x-0.5 lg:space-x-2 text-xl md:text-base font-medium text-dark-300 md:static md:w-[fit-content] md:h-[fit-content] md:flex-row">
 				{% for link in menus.header.items %}
-					{% if not has_class_name(link.classes, 'cta_label') %}
+					{% if loop.index != loop.length %}
 						<a href="{{link.url}}" class="block mb-4 md:mb-0 px-4 py-1 transition duration-200 ease-in-out rounded-full sm:inline-block hover:text-white hover:bg-dark-700" ${link.link===window.location.pathname ? "text-white" : "" }>{{link.title}}</a>
 					{% endif %}
 				{% endfor %}
