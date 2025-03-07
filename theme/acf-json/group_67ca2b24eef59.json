@@ -67,7 +67,7 @@
                     "label": "Description",
                     "name": "description",
                     "aria-label": "",
-                    "type": "wysiwyg",
+                    "type": "textarea",
                     "instructions": "",
                     "required": 0,
                     "conditional_logic": 0,
@@ -77,11 +77,12 @@
                         "id": ""
                     },
                     "default_value": "",
-                    "allow_in_bindings": 0,
-                    "tabs": "all",
-                    "toolbar": "basic",
-                    "media_upload": 1,
-                    "delay": 0
+                    "acfe_textarea_code": 0,
+                    "maxlength": "",
+                    "allow_in_bindings": 1,
+                    "rows": "",
+                    "placeholder": "",
+                    "new_lines": ""
                 }
             ],
             "acfe_group_modal_close": 0,
@@ -259,5 +260,5 @@
     "acfe_form": 0,
     "acfe_meta": "",
     "acfe_note": "",
-    "modified": 1741302823
+    "modified": 1741307235
 }
