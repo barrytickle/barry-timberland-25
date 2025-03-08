@@ -21,7 +21,6 @@ Timber::$dirname    = array( 'views', 'blocks' );
 Timber::$autoescape = false;
 
 
-
 class Timberland extends Timber\Site {
 	public function __construct() {
 		add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_assets' ) );
@@ -41,6 +40,10 @@ class Timberland extends Timber\Site {
 		$context['site'] = $this;
 		$menus = wp_get_nav_menus();
 		$context['menus'] = [];
+		$context['all_posts'] = Timber::get_posts(array(
+			'posts_per_page' => -1
+		));
+		$context['pathname'] = $_SERVER['REQUEST_URI'];
 
 		$context['options'] = get_fields('options');
 		foreach ($menus as $menu) {
@@ -195,8 +198,6 @@ function acf_should_wrap_innerblocks( $wrap, $name ) {
 add_filter( 'acf/blocks/wrap_frontend_innerblocks', 'acf_should_wrap_innerblocks', 10, 2 );
 
 add_filter('timber/twig', function ($twig) {
-
-
 	$twig->addFunction(new TwigFunction('logo_split', 'logo_split'));
 	return $twig;
 });
