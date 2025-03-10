@@ -39,4 +39,8 @@ body.admin-bar {
 
 .wrapped-content {
   @apply max-w-2xl mx-auto;
+
+  p {
+    @apply text-dark-400 font-light;
+  }
 }
